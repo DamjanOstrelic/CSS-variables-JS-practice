@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>CSS Variables with JS</title>
+</head>
+
+<body>
+  <header>
+    <h1>Updating CSS Variables with <span id="JS-title">JS</span></h1>
+  </header>
+  <main>
+    <section id="controls-section">
+      <label for="spacing">Spacing: </label>
+      <input type="range" name="spacing" min="10" max="200" class="controls" value="10" data-sizing="px" />
+
+      <label for="blur">Blur: </label>
+      <input type="range" name="blur" value="5" min="0" max="25" class="controls" data-sizing="px" />
+
+      <label for="background">Base Color: </label>
+      <input type="color" name="background" class="controls" value="#ffc600" data-sizing="" />
+
+    </section>
+    <section id="img-section">
+      <img src="src/sample.jpg" alt="Sample image">
+    </section>
+  </main>
+
+  <script>
+    let inputs = document.querySelectorAll("#controls-section input"); //select all input tags with the class "controls"
+
+    inputs.forEach(input => input.addEventListener("change", handleChange)); //add event listeners to each input tag
+    inputs.forEach(input => input.addEventListener("mousemove", handleChange));
+
+
+    function handleChange() {
+      document.documentElement.style.setProperty(`--${this.name}`, `${this.value + this.dataset.sizing}`);
+    }
+
+
+
+  </script>
+
+
+</body>
+
+</html>
